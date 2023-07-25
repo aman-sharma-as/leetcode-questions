@@ -8,10 +8,13 @@ public:
                 max = candies[i];
             }
         }
-        vector<bool> result (n, false);
+        vector<bool> result;
         for(int i = 0; i < n; i++){
             if((candies[i]+extraCandies) >= max){
-                result[i] = true;
+                result.push_back(true);
+            }
+            else{
+                result.push_back(false);
             }
         }
         return result;
