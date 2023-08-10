@@ -52,14 +52,14 @@ public:
         if(list2 == NULL)
             return list1;
 
-        ListNode* newHead = new ListNode(0);
+        ListNode* newHead = NULL;
         if(list1 -> val < list2 -> val){
-            newHead -> next = solve(list1, list2);
+            newHead = solve(list1, list2);
         }
         else{
-            newHead -> next = solve(list2, list1);
+            newHead = solve(list2, list1);
         }
-        return newHead -> next;
+        return newHead;
     }
     
 };
