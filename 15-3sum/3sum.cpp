@@ -20,7 +20,7 @@ public:
                     nums[rightPointer]});
                     leftPointer++;
                     rightPointer--;
-                    while(leftPointer < numsSize && 
+                    while(leftPointer < rightPointer && 
                     nums[leftPointer] == nums[leftPointer-1])
                         leftPointer++;
                     while(rightPointer > mainPointer && nums[rightPointer]== nums[rightPointer+1])
