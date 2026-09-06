@@ -1,45 +1,44 @@
 class Solution {
     public boolean backspaceCompare(String s, String t) {
-        char[] sCopy = new char[s.length()];
-        char[] tCopy = new char[t.length()];
+        int i = s.length() - 1;
+        int j = t.length() - 1;
 
-        int sPtr = 0;
+        while (true) {
+            i = nextValidIndex(s, i);
+            j = nextValidIndex(t, j);
 
-        for (int i = 0; i < s.length(); i++) {
-            if (s.charAt(i) == '#') {
-                if (sPtr > 0) {
-                    sPtr--;
-                }
-            } else {
-                sCopy[sPtr] = s.charAt(i);
-                sPtr++;
+            if (i < 0 && j < 0) {
+                return true;
             }
-        }
 
-        int tPtr = 0;
-
-        for (int i = 0; i < t.length(); i++) {
-            if (t.charAt(i) == '#') {
-                if (tPtr > 0) {
-                    tPtr--;
-                }
-            } else {
-                tCopy[tPtr] = t.charAt(i);
-                tPtr++;
-            }
-        }
-
-        if (sPtr != tPtr) {
-            return false;
-        }
-
-        for (int i = 0; i < sPtr; i++) {
-            if (sCopy[i] != tCopy[i]) {
+            if (i < 0 || j < 0) {
                 return false;
             }
-        }
 
-        return true;
+            if (s.charAt(i) != t.charAt(j)) {
+                return false;
+            }
+
+            i--;
+            j--;
+        }
     }
 
+    private int nextValidIndex(String str, int index) {
+        int skip = 0;
+
+        while (index >= 0) {
+            if (str.charAt(index) == '#') {
+                skip++;
+            } else if (skip > 0) {
+                skip--;
+            } else {
+                break;
+            }
+
+            index--;
+        }
+
+        return index;
+    }
 }
