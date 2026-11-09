@@ -1,13 +1,9 @@
 class Solution {
     public boolean containsDuplicate(int[] nums) {
-        Map<Integer, Integer> mp = new HashMap<>();
+        Set <Integer> freqSet = new HashSet<>();
 
-        for(int num : nums){
-            mp.put(num, mp.getOrDefault(num, 0) + 1);
-        }
-
-        for(Map.Entry<Integer, Integer> entry : mp.entrySet()){
-            if(entry.getValue() > 1)
+        for(int num: nums){
+            if(!freqSet.add(num))
                 return true;
         }
 
